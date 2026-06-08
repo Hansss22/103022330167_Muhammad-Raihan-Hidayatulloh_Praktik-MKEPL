@@ -13,11 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Memberikan izin wajib untuk membuat rilis di repositori
-    permissions:
-      contents: write
-      dependency-graph: write
-
     steps:
     - uses: actions/checkout@v4
     
