@@ -1,10 +1,5 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# For more information see: https://github.com
 
 name: Java CI with Maven
 
@@ -17,6 +12,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # Memberikan izin wajib untuk membuat rilis di repositori
+    permissions:
+      contents: write
+      dependency-graph: write
 
     steps:
     - uses: actions/checkout@v4
@@ -39,3 +39,15 @@ jobs:
       with:
         name: aplikasi-counter-jar
         path: bin/target/*.jar
+
+    - name: Deploy to GitHub Releases
+      uses: softprops/action-gh-release@v2
+      if: github.ref == 'refs/heads/main'
+      with:
+        tag_name: v1.0.${{ github.run_number }}
+        name: Release v1.0.${{ github.run_number }}
+        draft: false
+        prerelease: false
+        files: bin/target/*.jar
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
