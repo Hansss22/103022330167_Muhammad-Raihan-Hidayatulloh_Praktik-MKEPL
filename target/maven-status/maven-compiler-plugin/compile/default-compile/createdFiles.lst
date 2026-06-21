@@ -1,0 +1,17 @@
+Model\Product.class
+Exception\UserNotFoundException.class
+Service\IHistory.class
+Utils\AppUtils.class
+Service\TransactionService.class
+Model\Electronic.class
+Model\Fashion.class
+Service\ITransaction.class
+Exception\InvalidRegistrationException.class
+Service\IProductService.class
+Model\User.class
+Service\UserService.class
+Exception\LoginException.class
+Service\HistoryService.class
+Service\ProductService.class
+Main\Main.class
+Model\Living.class
